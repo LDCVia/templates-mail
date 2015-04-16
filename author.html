@@ -1,13 +1,13 @@
-<xc-header title="LDC Via Document Library"></xc-header>
+<xc-header title="LDC Via Mail"></xc-header>
 <xc-layout>
   <xc-list
-    model-name="Document"
-    title="By Author"
-    url=":host/search/:db/Document?count=20"
-    documenturl=":host/document/:db/Document/:id"
-    responseurl=":host/responses/:db/Document/:id?expand=true"
+    model-name="Memo"
+    title="From"
+    url=":host/search/:db/Memo?count=20"
+    documenturl=":host/document/:db/Memo/:id"
+    responseurl=":host/responses/:db/Memo/:id?expand=true"
     list-width="5"
-    allow-add="true"
+    allow-add="false"
     order-by="__created"
     order-reversed="true"
     summary-field="Subject"
@@ -17,25 +17,25 @@
     autoload-first="true"
     allow-search="false"
     type="accordion-remote"
-    categoryurl=":host/list/:db/Document/From"
+    categoryurl=":host/list/:db/Memo/From"
     categoryfield="From"
     category-field-type="notesname"
     group-by="__createdby"
     infinite-scroll="false">
     <xc-form
-      model-name="Document"
-      default-text="Select a topic from the list"
-      url=":host/document/:db/Document/:id"
-      responseurl=":host/responses/:db/Document/:id?expand=true"
+      model-name="Memo"
+      default-text="Select an email from the list"
+      url=":host/document/:db/Memo/:id"
+      responseurl=":host/responses/:db/Memo/:id?expand=true"
       >
     </xc-form>
 
     <xc-list
-      title="Responses"
-      model-name="Response"
-      url=":host/responses/:db/Document/:id?expand=true"
-      documenturl=":host/document/:db/Response/:id"
-      allow-add="true"
+      title="Replies"
+      model-name="Reply"
+      url=":host/responses/:db/Memo/:id?expand=true"
+      documenturl=":host/document/:db/Reply/:id"
+      allow-add="false"
       allow-search="false"
       order-by="__created"
       order-reversed="true"

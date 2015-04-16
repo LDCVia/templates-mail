@@ -20,10 +20,6 @@ xcomponents.menuOptions = [{
   url: '#/home',
   icon: 'fa-calendar'
 }, {
-  label: 'By Category',
-  url: '#/category',
-  icon: 'fa-list'
-}, {
   label: 'By Author',
   url: '#/author',
   icon: 'fa-user'
@@ -34,46 +30,39 @@ xcomponents.footerOptions = [{
   url: '#/home',
   icon: 'fa-calendar'
 }, {
-  label: 'By Category',
-  url: '#/category',
-  icon: 'fa-list'
-}, {
   label: 'By Author',
   url: '#/author',
   icon: 'fa-user'
 }];
-xcomponents.footerTitle = "LDC Via Document Library using XComponents (" + xcomponents.appVersion + ")";
+xcomponents.footerTitle = "LDC Via Mail using XComponents (" + xcomponents.appVersion + ")";
 
 /*
 Define the main Topic model
 */
-xcomponents.models['Document'] = {
-  name: 'Document',
+xcomponents.models['Memo'] = {
+  name: 'Memo',
   fields: [{
     label: 'Subject',
     field: 'Subject',
     required: true
   }, {
-    label: 'Created By',
-    field: 'From',
+    label: 'To',
+    field: 'SendTo',
     type: 'notesname',
     edit: false,
     read: true
   }, {
-    label: 'Category',
-    field: 'Categories',
-    type: 'implodelist',
-    read: true,
-    edit: false
+    label: 'CC',
+    field: 'CopyTo',
+    type: 'notesname',
+    edit: false,
+    read: true
   }, {
-    label: 'Category',
-    field: 'Categories',
-    type: 'select-multiple',
-    options: {
-      endpoint: xcomponents.host + '/list/' + xcomponents.db + '/Document/Categories'
-    },
-    read: false,
-    edit: true
+    label: 'BCC',
+    field: 'BlindCopyTo',
+    type: 'notesname',
+    edit: false,
+    read: true
   }, {
     label: 'Date Created',
     field: '__created',
@@ -106,15 +95,27 @@ xcomponents.models['Document'] = {
   }]
 };
 
-xcomponents.models['Response'] = {
-  name: 'Response',
+xcomponents.models['Reply'] = {
+  name: 'Reply',
   fields: [{
     label: 'Subject',
     field: 'Subject',
     required: true
   }, {
-    label: 'Created By',
-    field: 'From',
+    label: 'To',
+    field: 'SendTo',
+    type: 'notesname',
+    edit: false,
+    read: true
+  }, {
+    label: 'CC',
+    field: 'CopyTo',
+    type: 'notesname',
+    edit: false,
+    read: true
+  }, {
+    label: 'BCC',
+    field: 'BlindCopyTo',
     type: 'notesname',
     edit: false,
     read: true
@@ -165,10 +166,6 @@ xcomponents.addCallback(function() {
   app.config(['$routeProvider', function($routeProvider) {
     $routeProvider.when('/home', {
       templateUrl: 'home.html',
-      controller: 'xcController'
-    });
-    $routeProvider.when('/category', {
-      templateUrl: 'category.html',
       controller: 'xcController'
     });
     $routeProvider.when('/author', {
